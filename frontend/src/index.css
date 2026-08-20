@@ -1,0 +1,104 @@
+/* Self-hosted so the app renders correctly with no network access. */
+@import '@fontsource-variable/ibm-plex-sans/index.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import '@fontsource/ibm-plex-mono/600.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  * {
+    @apply border-line;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper text-ink antialiased;
+    font-family: theme('fontFamily.sans');
+  }
+
+  /* Every figure in the app lines up in a column: counts, dates, ids, money. */
+  .tnum,
+  table,
+  time {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* One focus treatment everywhere, always visible for keyboard users. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent/50 ring-offset-2 ring-offset-paper;
+  }
+
+  ::selection {
+    @apply bg-accent/15;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-line-strong;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-ink-faint;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* The small mono label that heads every section. */
+  .eyebrow {
+    @apply font-mono text-3xs font-medium uppercase tracking-[0.1em] text-ink-faint;
+  }
+
+  .panel {
+    @apply rounded-lg border border-line bg-surface shadow-card;
+  }
+
+  /* Wraps on narrow screens rather than truncating the panel's own title. */
+  .panel-header {
+    @apply flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b border-line px-4 py-3;
+  }
+
+  /* Column headers: mono, uppercase, quiet. Consistent across every table. */
+  .col-head {
+    @apply whitespace-nowrap px-3 py-2 text-left font-mono text-3xs font-medium uppercase
+           tracking-[0.08em] text-ink-faint;
+  }
+
+  .data-cell {
+    @apply px-3 py-2.5 align-middle text-[13px] text-ink;
+  }
+
+  .link {
+    @apply text-accent underline-offset-[3px] hover:underline;
+  }
+
+  /* A row you can click through to somewhere. */
+  .row-hover {
+    @apply transition-colors hover:bg-raised;
+  }
+}

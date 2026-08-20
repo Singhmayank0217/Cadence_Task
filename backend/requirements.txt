@@ -1,0 +1,15 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+SQLAlchemy==2.0.36
+pydantic==2.10.4
+pydantic-settings==2.7.0
+email-validator==2.2.0
+python-dotenv==1.0.1
+httpx==0.28.1
+PyJWT==2.10.1
+
+# Optional - only needed when DATABASE_URL points at PostgreSQL
+psycopg2-binary==2.9.10
+
+# Dev / test
+pytest==8.3.4
